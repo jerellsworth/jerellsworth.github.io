@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FIREBRAWL</title>
+        <style>
+            #title-pic, img{
+                width: 50vw;
+            }
+            .nerdy table, .nerdy th, .nerdy td {
+                border: 1px solid;
+            }
+            .flexy {
+                text-align: center;
+            }
+            .play-button {
+                position: relative;
+                top: 50%;
+            }
+            .window {
+                display: inline-block;
+            }
+            #right-side {
+                height: 100%;
+            }
+            body {
+                background-color: #111111;
+                color: #eeeeee;
+                font-family: courier new;
+                font-size: 16px;
+            }
+            #play {
+                background-color: #04AA6D;
+                color: #eeeeee;
+                border: none;
+                padding: 0.25em 0.25em;
+                font-size: 1.5em;
+                font-family: courier new;
+                border-radius: 10%;
+                font-weight: bold;
+            }
+            #play:hover {
+                background-color: #05C27C;
+            }
+            a:link {
+                color: #09C7DD;
+            }
+            a:visited {
+                color: #C308BB;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="window">
+    <div class="window-body">
+        <table>
+            <tr>
+                <td>            
+                    <div id="title-pic">
+                        <img src="../assets/firebrawl.png" id="title-pic-img">
+                    </div>
+                </td>
+                <td class="flexy">
+                    <table id="right-side"><tr><td>
+                        <table class="nerdy">
+                             <caption><b>Default controls</b></caption>
+                             <tr>
+                                <th>Button</th>
+                                <th>
+                                <th>Keyboard</th>
+                             </tr>
+                             <tr>
+                                <td>Up</td>
+                                <td>-&gt</td>
+                                <td>Keyboard Up</td>
+                            </tr>
+                             <tr>
+                                <td>Down</td>
+                                <td>-&gt</td>
+                                <td>Keyboard Down</td>
+                            </tr>
+                             <tr>
+                                <td>Left</td>
+                                <td>-&gt</td>
+                                <td>Keyboard Left</td>
+                            </tr>
+                             <tr>
+                                <td>Right</td>
+                                <td>-&gt</td>
+                                <td>Keyboard Right</td>
+                            </tr>
+                             <tr>
+                                <td>A</td>
+                                <td>-&gt</td>
+                                <td>a</td>
+                            </tr>
+                             <tr>
+                                <td>B</td>
+                                <td>-&gt</td>
+                                <td>z</td>
+                            </tr>
+                             <tr>
+                                <td>C</td>
+                                <td>-&gt</td>
+                                <td>x</td>
+                            </tr>
+                             <tr>
+                                <td>Start</td>
+                                <td>-&gt</td>
+                                <td>Enter/Return</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Escape to exit</td>
+                            </tr>
+                        </table>
+                    </td></tr>
+                    <tr><td>
+                        <button id="play">PLAY</button>
+                    </td></tr></table>
+                </td>
+            </tr>
+        </table>
+        <p>
+            WARNING: On some web browsers, this emulator works <b>real bad</b>. If your performance is <b>garbage</b> try Firefox.
+        <p>
+            <a href="https://safetystoatstudios.itch.io/firebrawl" target="_blank">
+                This title's homepage (Including Instructions)
+            </a>
+        </p>
+        <p>
+            Can I have the <a href="../roms/FIREBRAWL_1.0.2.bin">rom</a> please?
+        </p>
+        <p>
+            You are in a new tab. Close it to resume your adventure.
+        </p>
+    </div>
+</div>
+<script src="./nostalgist"></script>
+<script type=module>
+function on(eventType, selector, listener) {
+  document.body.addEventListener(eventType, (event) => {
+    let target = event.target
+    if (target && target.closest(selector)) {
+      listener.call(this, event)
+    }
+  })
+}
+let nostalgist;
+on('click', '#play', async (event) => {
+  nostalgist = await Nostalgist.megadrive({
+    rom: "FIREBRAWL_1.0.2.bin",
+    resolveRom(file) {
+      return `../roms/${file}`
+    }
+  });
+})
+on('click', '#title-pic-img', async (event) => {
+  nostalgist = await Nostalgist.megadrive({
+    rom: "FIREBRAWL_1.0.2.bin",
+    resolveRom(file) {
+      return `../roms/${file}`
+    }
+  });
+})
+addEventListener('keyup', (event) => {
+  if (event.key === 'Escape') {
+    nostalgist?.exit()
+  }
+})
+</script>
+
+</body>
+</html>
